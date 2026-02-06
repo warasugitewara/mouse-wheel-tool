@@ -38,35 +38,49 @@ Java 21/22/25 対応のマウスホイール自動回転ツール。**Windows/Li
 
 ## 🚀 クイックスタート
 
-### 1️⃣ ビルド
+### 推奨: GitHub Release から直接ダウンロード
+
+最も簡単な方法です：
 
 ```bash
-git clone <repository-url>
+# JAR ファイルをダウンロード
+wget https://github.com/warasugitewara/mouse-wheel-tool/releases/download/v1.1.0/MouseWheelTool-1.0.0-jar-with-dependencies.jar
+
+# 実行
+java -jar MouseWheelTool-1.0.0-jar-with-dependencies.jar
+```
+
+### ビルドから実行（詳細）
+
+#### Windows
+
+```bash
+git clone https://github.com/warasugitewara/mouse-wheel-tool.git
 cd MouseWheelTool
 mvn clean package -DskipTests
-```
-
-### 2️⃣ 実行
-
-**Windows:**
-```bash
 java -jar target/MouseWheelTool-1.0.0-jar-with-dependencies.jar
 ```
 
-または バッチファイル:
-```bash
-run.bat
-```
+#### Linux
 
-**Linux:**
+詳細な手順は **[LINUX_SETUP.md](LINUX_SETUP.md)** を参照してください。
+
 ```bash
+# 1. 必要なツールをインストール
+sudo apt install -y openjdk-21-jdk maven  # Ubuntu/Debian
+
+# 2. ソースコードを取得・ビルド
+git clone https://github.com/warasugitewara/mouse-wheel-tool.git
+cd mouse-wheel-tool
+mvn clean package -DskipTests
+
+# 3. 実行
 java -jar target/MouseWheelTool-1.0.0-jar-with-dependencies.jar
 ```
 
-または シェルスクリプト:
-```bash
-bash run.sh
-```
+**⚠️ target フォルダーが見つからないエラーが出た場合:**
+- `mvn clean package -DskipTests` でビルドしてください
+- または、GitHub Release から JAR を直接ダウンロードしてください
 
 ## 📖 使い方
 
@@ -209,6 +223,50 @@ Test completed!
 
 ## 🐛 トラブルシューティング
 
+### 共通エラー
+
+#### エラー: "target フォルダーが見つからない"
+
+**原因**: ビルドされていない
+
+**解決方法**:
+```bash
+# ビルドコマンドを実行
+mvn clean package -DskipTests
+
+# または、GitHub Release から JAR を直接ダウンロード
+wget https://github.com/warasugitewara/mouse-wheel-tool/releases/download/v1.1.0/MouseWheelTool-1.0.0-jar-with-dependencies.jar
+java -jar MouseWheelTool-1.0.0-jar-with-dependencies.jar
+```
+
+#### エラー: "java: command not found"
+
+**原因**: Java がインストールされていない
+
+**解決方法**:
+```bash
+# Linux
+sudo apt install openjdk-21-jdk  # Ubuntu/Debian
+sudo yum install java-21-openjdk  # CentOS/RHEL
+
+# 確認
+java -version
+```
+
+#### エラー: "mvn: command not found"
+
+**原因**: Maven がインストールされていない
+
+**解決方法**:
+```bash
+# Linux
+sudo apt install maven  # Ubuntu/Debian
+sudo yum install maven  # CentOS/RHEL
+
+# 確認
+mvn -version
+```
+
 ### Windows
 
 #### F9/F10 が反応しない
@@ -222,13 +280,25 @@ Test completed!
 
 ### Linux
 
+**詳細は [LINUX_SETUP.md](LINUX_SETUP.md) を参照してください**
+
+#### "mvn", "java" が見つからない
+```bash
+# インストール確認
+which java
+which mvn
+
+# パスを確認
+echo $PATH
+```
+
 #### xbindkeys が F9/F10 を認識しない
 ```bash
 # xbindkeys テスト
 xbindkeys -v
 
 # キーの確認
-xbindkeys -k
+xbindkeys -k  # F9 を押してテスト
 ```
 
 #### マウスホイール が動作しない
@@ -240,8 +310,9 @@ xbindkeys -k
 echo $DISPLAY
 ```
 
-#### GUI キーリスナーを使用する場合
-- ウィンドウをアクティブ（フォーカス）にして F9/F10 を押してください
+#### GUI が表示されない
+- X11/ディスプレイサーバーが起動しているか確認
+- X11 フォワーディングを確認（リモート接続時）
 
 ### macOS
 
@@ -268,6 +339,20 @@ echo $DISPLAY
 
 - [CONTRIBUTING.md](CONTRIBUTING.md) - 貢献ガイド
 - [Issues](../../issues) - バグ報告・機能リクエスト
+
+## 📖 セットアップガイド
+
+### Windows
+メイン README と [GITHUB_MANUAL_SETUP.md](GITHUB_MANUAL_SETUP.md) を参照
+
+### Linux
+詳細な手順は **[LINUX_SETUP.md](LINUX_SETUP.md)** を参照してください
+- インストール手順（Ubuntu/Debian/Fedora/CentOS）
+- xbindkeys セットアップ
+- トラブルシューティング
+
+### macOS
+未実装
 
 ## 📝 ライセンス
 
