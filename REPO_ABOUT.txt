@@ -1,0 +1,12 @@
+マウスホイール回転ツール
+
+Java で開発された、Windows/Linux クロスプラットフォーム対応のマウスホイール自動回転ツール。F9/F10 ホットキーで簡単操作。
+
+🎯 主な機能:
+✅ グローバルホットキー (F9/F10)
+✅ GUI スライダー + 数値入力
+✅ 回転速度・量をリアルタイム調整
+✅ Windows/Linux 対応
+✅ Java 21/22/25 互換
+
+📖 https://github.com/warasugitewara/mouse-wheel-tool
