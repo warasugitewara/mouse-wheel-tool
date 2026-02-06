@@ -2,7 +2,7 @@
 
 Java 21/22/25 対応のマウスホイール自動回転ツール。**Windows/Linux** クロスプラットフォーム対応。
 
-![Version](https://img.shields.io/badge/version-1.1.0-blue)
+![Version](https://img.shields.io/badge/version-1.0.0-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 ![Java](https://img.shields.io/badge/java-21%2B-orange)
 
@@ -38,13 +38,19 @@ Java 21/22/25 対応のマウスホイール自動回転ツール。**Windows/Li
 
 ## 🚀 クイックスタート
 
-### 推奨: GitHub Release から直接ダウンロード
+### 📥 推奨: GitHub Release から直接ダウンロード（最も簡単）
 
-最も簡単な方法です：
+ワンコマンドで導入できます：
+
+```bash
+wget https://github.com/warasugitewara/mouse-wheel-tool/releases/download/v1.0.0/MouseWheelTool-1.0.0-jar-with-dependencies.jar && java -jar MouseWheelTool-1.0.0-jar-with-dependencies.jar
+```
+
+または分けて実行：
 
 ```bash
 # JAR ファイルをダウンロード
-wget https://github.com/warasugitewara/mouse-wheel-tool/releases/download/v1.1.0/MouseWheelTool-1.0.0-jar-with-dependencies.jar
+wget https://github.com/warasugitewara/mouse-wheel-tool/releases/download/v1.0.0/MouseWheelTool-1.0.0-jar-with-dependencies.jar
 
 # 実行
 java -jar MouseWheelTool-1.0.0-jar-with-dependencies.jar
@@ -235,7 +241,7 @@ Test completed!
 mvn clean package -DskipTests
 
 # または、GitHub Release から JAR を直接ダウンロード
-wget https://github.com/warasugitewara/mouse-wheel-tool/releases/download/v1.1.0/MouseWheelTool-1.0.0-jar-with-dependencies.jar
+wget https://github.com/warasugitewara/mouse-wheel-tool/releases/download/v1.0.0/MouseWheelTool-1.0.0-jar-with-dependencies.jar
 java -jar MouseWheelTool-1.0.0-jar-with-dependencies.jar
 ```
 
@@ -360,7 +366,7 @@ echo $DISPLAY
 
 ## 📝 変更履歴
 
-### v1.1.0 (Latest)
+### v1.0.0 (Latest)
 - ✨ 数値入力フィールド追加（スライダーとの連動）
 - 📈 最大回転量を 20 に拡張
 - 🐧 Linux 対応（xbindkeys 推奨）
