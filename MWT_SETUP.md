@@ -22,6 +22,41 @@ mwt --version
 
 **配置済みファイル**: `C:\Users\{username}\.bin\mwt.bat`
 
+### JAR パスをカスタマイズする
+
+JAR ファイルが異なるディレクトリにある場合、`mwt.bat` を編集してください：
+
+```batch
+@echo off
+# 以下のパスを変更してください
+set JAR_PATH=C:\path\to\your\MouseWheelTool-1.0.0-jar-with-dependencies.jar
+
+if not exist "%JAR_PATH%" (
+    echo Error: JAR file not found at %JAR_PATH%
+    exit /b 1
+)
+
+java -jar "%JAR_PATH%" %*
+```
+
+**便利な方法: 環境変数を使用**
+
+```powershell
+# PowerShell で環境変数を設定（管理者権限）
+[Environment]::SetEnvironmentVariable("MWT_JAR", "C:\path\to\your\MouseWheelTool-1.0.0-jar-with-dependencies.jar", "User")
+
+# mwt.bat を以下のように編集
+# @echo off
+# java -jar "%MWT_JAR%" %*
+```
+
+その後、`mwt.bat` を以下のように編集：
+
+```batch
+@echo off
+java -jar "%MWT_JAR%" %*
+```
+
 ### オプション 2: PATH に .bin を追加
 
 `.bin` が PATH に登録されていない場合:
@@ -39,6 +74,25 @@ mwt --version
 ```powershell
 # PowerShell プロフィールに追加 ($PROFILE を編集)
 function mwt { java -jar "$env:USERPROFILE\Workspace\MouseWheelTool\target\MouseWheelTool-1.0.0-jar-with-dependencies.jar" @args }
+```
+
+### オプション 4: 動的にパスを検索（より柔軟）
+
+JAR ファイルの位置がころころ変わる場合、`mwt.bat` を以下のように編集：
+
+```batch
+@echo off
+REM JAR ファイルを動的に検索
+for /f "delims=" %%A in ('dir /s /b %USERPROFILE%\*MouseWheelTool*jar-with-dependencies.jar 2^>nul ^| findstr /r ".*" ^| head -1') do (
+    set "JAR_PATH=%%A"
+)
+
+if not defined JAR_PATH (
+    echo Error: MouseWheelTool JAR not found
+    exit /b 1
+)
+
+java -jar "%JAR_PATH%" %*
 ```
 
 ---
